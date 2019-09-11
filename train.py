@@ -3,10 +3,13 @@ import tensorflow as tf
 from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, EPOCHS, BATCH_SIZE, save_model_dir
 from prepare_data import generate_datasets
 import math
+from models import mobilenet_v1
 
 def get_model(flag):
     tf.keras.backend.set_learning_phase(flag)
 
+    model = mobilenet_v1.MobileNet_V1()
+    
 
     model.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
     model.summary()
