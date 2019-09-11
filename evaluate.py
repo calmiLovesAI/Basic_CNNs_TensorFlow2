@@ -1,5 +1,5 @@
 import tensorflow as tf
-import config
+from config import save_model_dir
 from prepare_data import generate_datasets
 from train import get_model
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # print(train_dataset)
     # load the model
     model = get_model(flag=0)
-    model.load_weights(filepath=config.save_model_dir)
+    model.load_weights(filepath=save_model_dir)
 
     # Get the accuracy on the test set
     loss_object = tf.keras.metrics.SparseCategoricalCrossentropy()

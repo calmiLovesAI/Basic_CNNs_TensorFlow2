@@ -1,6 +1,6 @@
 from __future__ import absolute_import, division, print_function
 import tensorflow as tf
-import config
+from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, EPOCHS, BATCH_SIZE, save_model_dir
 from prepare_data import generate_datasets
 import math
 
@@ -8,7 +8,7 @@ def get_model(flag):
     tf.keras.backend.set_learning_phase(flag)
 
 
-    model.build(input_shape=(None, config.image_height, config.image_width, config.channels))
+    model.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
     model.summary()
 
     return model
@@ -59,15 +59,15 @@ if __name__ == '__main__':
         valid_accuracy(labels, predictions)
 
     # start training
-    for epoch in range(config.EPOCHS):
+    for epoch in range(EPOCHS):
         step = 0
         for images, labels in train_dataset:
             step += 1
             train_step(images, labels)
             print("Epoch: {}/{}, step: {}/{}, loss: {:.5f}, accuracy: {:.5f}".format(epoch + 1,
-                                                                                     config.EPOCHS,
+                                                                                     EPOCHS,
                                                                                      step,
-                                                                                     math.ceil(train_count / config.BATCH_SIZE),
+                                                                                     math.ceil(train_count / BATCH_SIZE),
                                                                                      train_loss.result(),
                                                                                      train_accuracy.result()))
 
@@ -76,10 +76,10 @@ if __name__ == '__main__':
 
         print("Epoch: {}/{}, train loss: {:.5f}, train accuracy: {:.5f}, "
               "valid loss: {:.5f}, valid accuracy: {:.5f}".format(epoch + 1,
-                                                                  config.EPOCHS,
+                                                                  EPOCHS,
                                                                   train_loss.result(),
                                                                   train_accuracy.result(),
                                                                   valid_loss.result(),
                                                                   valid_accuracy.result()))
 
-    model.save_weights(filepath=config.save_model_dir, save_format='tf')
+    model.save_weights(filepath=save_model_dir, save_format='tf')

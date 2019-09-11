@@ -1,16 +1,16 @@
 import tensorflow as tf
-import config
 import pathlib
-from config import image_height, image_width, channels
+from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
+    train_dir, valid_dir, test_dir, BATCH_SIZE
 
 
 def load_and_preprocess_image(img_path):
     # read pictures
     img_raw = tf.io.read_file(img_path)
     # decode pictures
-    img_tensor = tf.image.decode_jpeg(img_raw, channels=channels)
+    img_tensor = tf.image.decode_jpeg(img_raw, channels=CHANNELS)
     # resize
-    img_tensor = tf.image.resize(img_tensor, [image_height, image_width])
+    img_tensor = tf.image.resize(img_tensor, [IMAGE_HEIGHT, IMAGE_WIDTH])
     img_tensor = tf.cast(img_tensor, tf.float32)
     # normalization
     img = img_tensor / 255.0
@@ -44,14 +44,14 @@ def get_dataset(dataset_root_dir):
 
 
 def generate_datasets():
-    train_dataset, train_count = get_dataset(dataset_root_dir=config.train_dir)
-    valid_dataset, valid_count = get_dataset(dataset_root_dir=config.valid_dir)
-    test_dataset, test_count = get_dataset(dataset_root_dir=config.test_dir)
+    train_dataset, train_count = get_dataset(dataset_root_dir=train_dir)
+    valid_dataset, valid_count = get_dataset(dataset_root_dir=valid_dir)
+    test_dataset, test_count = get_dataset(dataset_root_dir=test_dir)
 
 
     # read the original_dataset in the form of batch
-    train_dataset = train_dataset.shuffle(buffer_size=train_count).batch(batch_size=config.BATCH_SIZE)
-    valid_dataset = valid_dataset.batch(batch_size=config.BATCH_SIZE)
-    test_dataset = test_dataset.batch(batch_size=config.BATCH_SIZE)
+    train_dataset = train_dataset.shuffle(buffer_size=train_count).batch(batch_size=BATCH_SIZE)
+    valid_dataset = valid_dataset.batch(batch_size=BATCH_SIZE)
+    test_dataset = test_dataset.batch(batch_size=BATCH_SIZE)
 
     return train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count
