@@ -10,6 +10,7 @@ dataset_dir = "dataset/"
 train_dir = dataset_dir + "train"
 valid_dir = dataset_dir + "valid"
 test_dir = dataset_dir + "test"
+# VALID_SET_RATIO = TRAIN_SET_RATIO + TEST_SET_RATIO
 TRAIN_SET_RATIO = 0.6
 TEST_SET_RATIO = 0.2
 

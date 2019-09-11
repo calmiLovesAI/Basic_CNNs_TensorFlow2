@@ -60,7 +60,7 @@ class MobileNet_V1(tf.keras.Model):
                                                                  padding="same")
         self.separable_conv_13 = tf.keras.layers.SeparableConv2D(filters=1024,
                                                                  kernel_size=(3, 3),
-                                                                 strides=2,
+                                                                 strides=1,
                                                                  padding="same")
 
         self.avg_pool = tf.keras.layers.AveragePooling2D(pool_size=(7, 7),
