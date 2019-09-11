@@ -1,0 +1,6 @@
+.idea
+__pycache__
+/dataset/*
+!/dataset/README.md
+/original_dataset/*
+!/original_dataset/README.md
