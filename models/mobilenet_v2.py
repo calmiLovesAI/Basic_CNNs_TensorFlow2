@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-class BottleNeck(tf.keras.Model):
+class BottleNeck(tf.keras.layers.Layer):
     def __init__(self, input_channels, output_channels, expansion_factor, stride):
         self.stride = stride
         super(BottleNeck, self).__init__()
@@ -20,7 +20,7 @@ class BottleNeck(tf.keras.Model):
         self.bn3 = tf.keras.layers.BatchNormalization()
         self.linear = tf.keras.layers.Activation(tf.keras.activations.linear)
 
-    def call(self, inputs, stride):
+    def call(self, inputs):
         if self.stride == 1:
             x = self.conv1(inputs)
             x = self.bn1(x)
