@@ -88,3 +88,4 @@ class MobileNet_V1(tf.keras.Model):
         x = self.fc(x)
 
         return x
+    
