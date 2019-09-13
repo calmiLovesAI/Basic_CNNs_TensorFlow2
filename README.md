@@ -5,10 +5,15 @@ A tensorflow2.0 implementation of some basic CNN networks.
 + MobileNet_V1
 + MobileNet_V2
 
+## Other networks
+For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
+For InceptionV3, see : https://github.com/calmisential/TensorFlow2.0_InceptionV3<br/>
+For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
+
 ## Train
 1. Requirements:
 + Python 3.6.8
-+ Tensorflow 2.0.0-beta1
++ Tensorflow 2.0.0-rc1
 2. To train the ResNet on your own dataset, you can put the dataset under the folder **original dataset**, and the directory should look like this:
 ```
 |——original dataset
