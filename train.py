@@ -1,14 +1,20 @@
 from __future__ import absolute_import, division, print_function
 import tensorflow as tf
-from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, EPOCHS, BATCH_SIZE, save_model_dir
+from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
+    EPOCHS, BATCH_SIZE, save_model_dir, model_name
 from prepare_data import generate_datasets
 import math
-from models import mobilenet_v1
+from models import mobilenet_v1, mobilenet_v2
 
 def get_model(flag):
     tf.keras.backend.set_learning_phase(flag)
 
     model = mobilenet_v1.MobileNet_V1()
+
+    if model_name == "mobilenet_v1":
+        model = mobilenet_v1.MobileNet_V1()
+    elif model_name == "mobilenet_v2":
+        model = mobilenet_v2.MobileNet_V2()
 
     model.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
     model.summary()
