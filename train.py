@@ -90,4 +90,7 @@ if __name__ == '__main__':
                                                                   valid_loss.result(),
                                                                   valid_accuracy.result()))
 
-    model.save_weights(filepath=save_model_dir, save_format='tf')
+    # save weights
+    # model.save_weights(filepath=save_model_dir+"model/", save_format='tf')
+    # save the whole model
+    tf.saved_model.save(model, save_model_dir)

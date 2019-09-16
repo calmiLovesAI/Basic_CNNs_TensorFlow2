@@ -4,3 +4,5 @@ __pycache__
 !/dataset/README.md
 /original_dataset/*
 !/original_dataset/README.md
+/saved_model/*
+!/saved_model/README.md
