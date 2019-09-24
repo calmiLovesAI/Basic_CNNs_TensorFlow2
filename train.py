@@ -6,9 +6,7 @@ from prepare_data import generate_datasets
 import math
 from models import mobilenet_v1, mobilenet_v2
 
-def get_model(flag):
-    tf.keras.backend.set_learning_phase(flag)
-
+def get_model():
     model = mobilenet_v1.MobileNet_V1()
 
     if model_name == "mobilenet_v1":
@@ -35,7 +33,7 @@ if __name__ == '__main__':
 
 
     # create model
-    model = get_model(flag=1)
+    model = get_model()
 
     # define loss and optimizer
     loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
@@ -50,25 +48,29 @@ if __name__ == '__main__':
     @tf.function
     def train_step(images, labels):
         with tf.GradientTape() as tape:
-            predictions = model(images)
+            predictions = model(images, training=True)
             loss = loss_object(y_true=labels, y_pred=predictions)
         gradients = tape.gradient(loss, model.trainable_variables)
         optimizer.apply_gradients(grads_and_vars=zip(gradients, model.trainable_variables))
 
-        train_loss(loss)
-        train_accuracy(labels, predictions)
+        train_loss.update_state(values=loss)
+        train_accuracy.update_state(y_true=labels, y_pred=predictions)
 
     @tf.function
     def valid_step(images, labels):
-        predictions = model(images)
+        predictions = model(images, training=False)
         v_loss = loss_object(labels, predictions)
 
-        valid_loss(v_loss)
-        valid_accuracy(labels, predictions)
+        valid_loss.update_state(values=v_loss)
+        valid_accuracy.update_state(y_true=labels, y_pred=predictions)
 
     # start training
     for epoch in range(EPOCHS):
         step = 0
+        train_loss.reset_states()
+        train_accuracy.reset_states()
+        valid_loss.reset_states()
+        valid_accuracy.reset_states()
         for images, labels in train_dataset:
             step += 1
             train_step(images, labels)
@@ -76,8 +78,8 @@ if __name__ == '__main__':
                                                                                      EPOCHS,
                                                                                      step,
                                                                                      math.ceil(train_count / BATCH_SIZE),
-                                                                                     train_loss.result(),
-                                                                                     train_accuracy.result()))
+                                                                                     train_loss.result().numpy(),
+                                                                                     train_accuracy.result().numpy()))
 
         for valid_images, valid_labels in valid_dataset:
             valid_step(valid_images, valid_labels)
@@ -85,10 +87,12 @@ if __name__ == '__main__':
         print("Epoch: {}/{}, train loss: {:.5f}, train accuracy: {:.5f}, "
               "valid loss: {:.5f}, valid accuracy: {:.5f}".format(epoch + 1,
                                                                   EPOCHS,
-                                                                  train_loss.result(),
-                                                                  train_accuracy.result(),
-                                                                  valid_loss.result(),
-                                                                  valid_accuracy.result()))
+                                                                  train_loss.result().numpy(),
+                                                                  train_accuracy.result().numpy(),
+                                                                  valid_loss.result().numpy(),
+                                                                  valid_accuracy.result().numpy()))
+
+
 
     # save weights
     # model.save_weights(filepath=save_model_dir+"model/", save_format='tf')

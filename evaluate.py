@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # get the original_dataset
     train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets()
     # load the model
-    # model = get_model(flag=0)
+    # model = get_model()
     # model.load_weights(filepath=save_model_dir)
     model = tf.saved_model.load(save_model_dir)
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     @tf.function
     def test_step(images, labels):
-        predictions = model(images)
+        predictions = model(images, training=False)
         t_loss = loss_object(labels, predictions)
 
         test_loss(t_loss)

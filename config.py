@@ -15,5 +15,5 @@ TRAIN_SET_RATIO = 0.6
 TEST_SET_RATIO = 0.2
 
 # choose a network
-model_name = "mobilenet_v1"
-# model_name = "mobilenet_v2"
+# model_name = "mobilenet_v1"
+model_name = "mobilenet_v2"

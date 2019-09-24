@@ -23,28 +23,28 @@ class BottleNeck(tf.keras.layers.Layer):
         self.bn3 = tf.keras.layers.BatchNormalization()
         self.linear = tf.keras.layers.Activation(tf.keras.activations.linear)
 
-    def call(self, inputs):
+    def call(self, inputs, training=None, **kwargs):
         if self.stride == 1 and self.input_channels == self.output_channels:
             x = self.conv1(inputs)
-            x = self.bn1(x)
+            x = self.bn1(x, training=training)
             x = tf.nn.relu6(x)
             x = self.dwconv(x)
-            x = self.bn2(x)
+            x = self.bn2(x, training=training)
             x = tf.nn.relu6(x)
             x = self.conv2(x)
-            x = self.bn3(x)
+            x = self.bn3(x, training=training)
             x = self.linear(x)
             x = tf.keras.layers.add([x, inputs])
             return x
         else:
             x = self.conv1(inputs)
-            x = self.bn1(x)
+            x = self.bn1(x, training=training)
             x = tf.nn.relu6(x)
             x = self.dwconv(x)
-            x = self.bn2(x)
+            x = self.bn2(x, training=training)
             x = tf.nn.relu6(x)
             x = self.conv2(x)
-            x = self.bn3(x)
+            x = self.bn3(x, training=training)
             x = self.linear(x)
             return x
 
@@ -123,15 +123,15 @@ class MobileNet_V2(tf.keras.Model):
                                             padding="same",
                                             activation=tf.keras.activations.softmax)
 
-    def call(self, inputs):
+    def call(self, inputs, training=None, mask=None):
         x = self.conv1(inputs)
-        x = self.bottleneck_1(x)
-        x = self.bottleneck_2(x)
-        x = self.bottleneck_3(x)
-        x = self.bottleneck_4(x)
-        x = self.bottleneck_5(x)
-        x = self.bottleneck_6(x)
-        x = self.bottleneck_7(x)
+        x = self.bottleneck_1(x, training=training)
+        x = self.bottleneck_2(x, training=training)
+        x = self.bottleneck_3(x, training=training)
+        x = self.bottleneck_4(x, training=training)
+        x = self.bottleneck_5(x, training=training)
+        x = self.bottleneck_6(x, training=training)
+        x = self.bottleneck_7(x, training=training)
 
         x = self.conv2(x)
         x = self.avgpool(x)
