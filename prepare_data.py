@@ -8,10 +8,10 @@ def load_and_preprocess_image(img_path):
     # read pictures
     img_raw = tf.io.read_file(img_path)
     # decode pictures
-    img_tensor = tf.image.decode_jpeg(img_raw, channels=CHANNELS)
+    img_tensor = tf.io.decode_jpeg(img_raw, channels=CHANNELS)
     # resize
     img_tensor = tf.image.resize(img_tensor, [IMAGE_HEIGHT, IMAGE_WIDTH])
-    img_tensor = tf.cast(img_tensor, tf.float32)
+    img_tensor = tf.dtypes.cast(img_tensor, tf.dtypes.float32)
     # normalization
     img = img_tensor / 255.0
     return img
