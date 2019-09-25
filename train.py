@@ -42,23 +42,23 @@ if __name__ == '__main__':
     valid_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='valid_accuracy')
 
     @tf.function
-    def train_step(images, labels):
+    def train_step(image_batch, label_batch):
         with tf.GradientTape() as tape:
-            predictions = model(images, training=True)
-            loss = loss_object(y_true=labels, y_pred=predictions)
+            predictions = model(image_batch, training=True)
+            loss = loss_object(y_true=label_batch, y_pred=predictions)
         gradients = tape.gradient(loss, model.trainable_variables)
         optimizer.apply_gradients(grads_and_vars=zip(gradients, model.trainable_variables))
 
         train_loss.update_state(values=loss)
-        train_accuracy.update_state(y_true=labels, y_pred=predictions)
+        train_accuracy.update_state(y_true=label_batch, y_pred=predictions)
 
     @tf.function
-    def valid_step(images, labels):
-        predictions = model(images, training=False)
-        v_loss = loss_object(labels, predictions)
+    def valid_step(image_batch, label_batch):
+        predictions = model(image_batch, training=False)
+        v_loss = loss_object(label_batch, predictions)
 
         valid_loss.update_state(values=v_loss)
-        valid_accuracy.update_state(y_true=labels, y_pred=predictions)
+        valid_accuracy.update_state(y_true=label_batch, y_pred=predictions)
 
     # start training
     for epoch in range(EPOCHS):

@@ -59,7 +59,6 @@ def dataset_to_tfrecord(dataset_dir, tfrecord_name):
 
 
 if __name__ == '__main__':
-
     dataset_to_tfrecord(dataset_dir=train_dir, tfrecord_name=train_tfrecord)
     dataset_to_tfrecord(dataset_dir=valid_dir, tfrecord_name=valid_tfrecord)
     dataset_to_tfrecord(dataset_dir=test_dir, tfrecord_name=test_tfrecord)
