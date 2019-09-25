@@ -86,8 +86,6 @@ if __name__ == '__main__':
                                                                                      train_loss.result().numpy(),
                                                                                      train_accuracy.result().numpy()))
 
-        train_loss.reset_states()
-        train_accuracy.reset_states()
 
         for features in valid_dataset:
             valid_images, valid_labels = process_features(features)
@@ -100,6 +98,8 @@ if __name__ == '__main__':
                                                                   train_accuracy.result().numpy(),
                                                                   valid_loss.result().numpy(),
                                                                   valid_accuracy.result().numpy()))
+        train_loss.reset_states()
+        train_accuracy.reset_states()
         valid_loss.reset_states()
         valid_accuracy.reset_states()
 
