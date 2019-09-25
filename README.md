@@ -41,8 +41,9 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
         ......
         |——class_name_n
 ```
-4. Change the corresponding parameters in **config.py**.
-5. Run **train.py** to start training.
+4. Run **to_tfrecord.py** to generate tfrecord files.
+5. Change the corresponding parameters in **config.py**.
+6. Run **train.py** to start training.
 ## Evaluate
 Run **evaluate.py** to evaluate the model's performance on the test dataset.
 
