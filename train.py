@@ -25,9 +25,8 @@ if __name__ == '__main__':
             tf.config.experimental.set_memory_growth(gpu, True)
 
 
-    # get the original_dataset
+    # get the dataset
     train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets()
-
 
     # create model
     model = get_model()
