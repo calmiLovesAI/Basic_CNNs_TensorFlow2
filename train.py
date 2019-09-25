@@ -6,18 +6,15 @@ from prepare_data import generate_datasets
 import math
 from models import mobilenet_v1, mobilenet_v2
 
+
 def get_model():
-    model = mobilenet_v1.MobileNet_V1()
+    NETWORKS = {"mobilenet_v1": mobilenet_v1.MobileNet_V1(),
+                "mobilenet_v2": mobilenet_v2.MobileNet_V2()}
+    network = NETWORKS[model_name]
+    network.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
+    network.summary()
 
-    if model_name == "mobilenet_v1":
-        model = mobilenet_v1.MobileNet_V1()
-    elif model_name == "mobilenet_v2":
-        model = mobilenet_v2.MobileNet_V2()
-
-    model.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
-    model.summary()
-
-    return model
+    return network
 
 
 if __name__ == '__main__':
@@ -67,10 +64,6 @@ if __name__ == '__main__':
     # start training
     for epoch in range(EPOCHS):
         step = 0
-        train_loss.reset_states()
-        train_accuracy.reset_states()
-        valid_loss.reset_states()
-        valid_accuracy.reset_states()
         for images, labels in train_dataset:
             step += 1
             train_step(images, labels)
@@ -80,6 +73,9 @@ if __name__ == '__main__':
                                                                                      math.ceil(train_count / BATCH_SIZE),
                                                                                      train_loss.result().numpy(),
                                                                                      train_accuracy.result().numpy()))
+
+        train_loss.reset_states()
+        train_accuracy.reset_states()
 
         for valid_images, valid_labels in valid_dataset:
             valid_step(valid_images, valid_labels)
@@ -91,6 +87,8 @@ if __name__ == '__main__':
                                                                   train_accuracy.result().numpy(),
                                                                   valid_loss.result().numpy(),
                                                                   valid_accuracy.result().numpy()))
+        valid_loss.reset_states()
+        valid_accuracy.reset_states()
 
 
 

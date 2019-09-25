@@ -1,6 +1,7 @@
 import tensorflow as tf
 from config import NUM_CLASSES
 
+
 class MobileNet_V1(tf.keras.Model):
     def __init__(self):
         super(MobileNet_V1, self).__init__()

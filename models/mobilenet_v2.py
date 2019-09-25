@@ -1,6 +1,7 @@
 import tensorflow as tf
 from config import NUM_CLASSES
 
+
 class BottleNeck(tf.keras.layers.Layer):
     def __init__(self, input_channels, output_channels, expansion_factor, stride):
         self.stride = stride
