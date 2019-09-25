@@ -22,10 +22,10 @@ def _int64_feature(value):
 
 
 # Create a dictionary with features that may be relevant.
-def image_example(image_path, label):
+def image_example(image_string, label):
     feature = {
         'label': _int64_feature(label),
-        'image_path': _bytes_feature(image_path),
+        'image_raw': _bytes_feature(image_string),
     }
 
     return tf.train.Example(features=tf.train.Features(feature=feature))
@@ -53,8 +53,8 @@ def dataset_to_tfrecord(dataset_dir, tfrecord_name):
     with tf.io.TFRecordWriter(path=tfrecord_name) as writer:
         for image_path, label in image_paths_and_labels_dict.items():
             print("Writing to tfrecord: {}".format(image_path))
-            # image_string = open(image_path, 'rb').read()
-            tf_example = image_example(bytes(image_path, encoding='utf-8'), label)
+            image_string = open(image_path, 'rb').read()
+            tf_example = image_example(image_string, label)
             writer.write(tf_example.SerializeToString())
 
 

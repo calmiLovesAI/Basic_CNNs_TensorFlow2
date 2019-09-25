@@ -1,7 +1,7 @@
 import tensorflow as tf
 from config import save_model_dir
 from prepare_data import generate_datasets
-from train import get_model
+from train import get_model, process_features
 
 if __name__ == '__main__':
 
@@ -27,11 +27,11 @@ if __name__ == '__main__':
     def test_step(images, labels):
         predictions = model(images, training=False)
         t_loss = loss_object(labels, predictions)
-
         test_loss(t_loss)
         test_accuracy(labels, predictions)
 
-    for test_images, test_labels in test_dataset:
+    for features in test_dataset:
+        test_images, test_labels = process_features(features)
         test_step(test_images, test_labels)
         print("loss: {:.5f}, test accuracy: {:.5f}".format(test_loss.result(),
                                                            test_accuracy.result()))

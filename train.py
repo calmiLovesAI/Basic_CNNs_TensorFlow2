@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 import tensorflow as tf
 from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
     EPOCHS, BATCH_SIZE, save_model_dir, model_name
-from prepare_data import generate_datasets
+from prepare_data import generate_datasets, load_and_preprocess_image
 import math
 from models import mobilenet_v1, mobilenet_v2
 
@@ -16,6 +16,18 @@ def get_model():
 
     return network
 
+
+def process_features(features):
+    image_raw = features['image_raw'].numpy()
+    image_tensor_list = []
+    for image in image_raw:
+        image_tensor = tf.io.decode_jpeg(contents=image, channels=CHANNELS)
+        image_tensor_list.append(image_tensor)
+    image_tensors = tf.stack(image_tensor_list, axis=0)
+    images = load_and_preprocess_image(image_tensors)
+    labels = features['label'].numpy()
+
+    return images, labels
 
 if __name__ == '__main__':
     # GPU settings
@@ -63,8 +75,9 @@ if __name__ == '__main__':
     # start training
     for epoch in range(EPOCHS):
         step = 0
-        for images, labels in train_dataset:
+        for features in train_dataset:
             step += 1
+            images, labels = process_features(features)
             train_step(images, labels)
             print("Epoch: {}/{}, step: {}/{}, loss: {:.5f}, accuracy: {:.5f}".format(epoch + 1,
                                                                                      EPOCHS,
@@ -76,7 +89,8 @@ if __name__ == '__main__':
         train_loss.reset_states()
         train_accuracy.reset_states()
 
-        for valid_images, valid_labels in valid_dataset:
+        for features in valid_dataset:
+            valid_images, valid_labels = process_features(features)
             valid_step(valid_images, valid_labels)
 
         print("Epoch: {}/{}, train loss: {:.5f}, train accuracy: {:.5f}, "
