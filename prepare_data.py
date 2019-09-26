@@ -1,9 +1,8 @@
 import tensorflow as tf
 import pathlib
-from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
+from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, \
     BATCH_SIZE, train_tfrecord, valid_tfrecord, test_tfrecord
 from parse_tfrecord import get_parsed_dataset
-
 
 def load_and_preprocess_image(img_tensor):
     # resize
