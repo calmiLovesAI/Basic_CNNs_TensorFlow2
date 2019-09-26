@@ -4,6 +4,7 @@ A tensorflow2.0 implementation of some basic CNNs.
 ## Networks included:
 + MobileNet_V1
 + MobileNet_V2
++ [MobileNet_V3](https://github.com/calmisential/MobileNetV3_TensorFlow2.0)
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
@@ -48,5 +49,6 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
 Run **evaluate.py** to evaluate the model's performance on the test dataset.
 
 ## References
-1. [MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
-2. [MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)
+1. MobileNet_V1: [Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
+2. MobileNet_V2: [Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)
+3. MobileNet_V3: [Searching for MobileNetV3](https://arxiv.org/abs/1905.02244)
