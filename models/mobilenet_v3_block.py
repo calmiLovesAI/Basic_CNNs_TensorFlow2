@@ -22,6 +22,8 @@ class SEBlock(tf.keras.layers.Layer):
         branch = tf.nn.relu(branch)
         branch = self.fc2(branch)
         branch = h_sigmoid(branch)
+        branch = tf.expand_dims(input=branch, axis=1)
+        branch = tf.expand_dims(input=branch, axis=1)
         output = inputs * branch
         return output
 

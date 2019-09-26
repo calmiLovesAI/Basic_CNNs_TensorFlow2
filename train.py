@@ -4,12 +4,13 @@ from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
     EPOCHS, BATCH_SIZE, save_model_dir, model_name
 from prepare_data import generate_datasets, load_and_preprocess_image
 import math
-from models import mobilenet_v1, mobilenet_v2
+from models import mobilenet_v1, mobilenet_v2, mobilenet_v3_large
 
 
 def get_model():
     NETWORKS = {"mobilenet_v1": mobilenet_v1.MobileNetV1(),
-                "mobilenet_v2": mobilenet_v2.MobileNetV2()}
+                "mobilenet_v2": mobilenet_v2.MobileNetV2(),
+                "mobilenrt_v3_large": mobilenet_v3_large.MobileNetV3Large()}
     network = NETWORKS[model_name]
     network.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
     network.summary()
