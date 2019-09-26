@@ -1,5 +1,5 @@
 import tensorflow as tf
-from config import save_model_dir
+from configuration import save_model_dir
 from prepare_data import generate_datasets
 from train import get_model, process_features
 

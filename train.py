@@ -1,6 +1,6 @@
 from __future__ import absolute_import, division, print_function
 import tensorflow as tf
-from config import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
+from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
     EPOCHS, BATCH_SIZE, save_model_dir, model_name
 from prepare_data import generate_datasets, load_and_preprocess_image
 import math

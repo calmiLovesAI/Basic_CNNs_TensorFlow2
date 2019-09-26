@@ -1,5 +1,5 @@
 import tensorflow as tf
-from config import NUM_CLASSES
+from configuration import NUM_CLASSES
 
 
 class BottleNeck(tf.keras.layers.Layer):

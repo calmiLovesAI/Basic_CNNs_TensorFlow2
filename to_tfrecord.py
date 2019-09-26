@@ -1,5 +1,5 @@
 import tensorflow as tf
-from config import train_dir, valid_dir, test_dir, train_tfrecord, valid_tfrecord, test_tfrecord
+from configuration import train_dir, valid_dir, test_dir, train_tfrecord, valid_tfrecord, test_tfrecord
 from prepare_data import get_images_and_labels
 import random
 

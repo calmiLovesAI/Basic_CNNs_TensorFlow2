@@ -1,5 +1,5 @@
 import tensorflow as tf
-from config import NUM_CLASSES
+from configuration import NUM_CLASSES
 
 
 class MobileNet_V1(tf.keras.Model):
