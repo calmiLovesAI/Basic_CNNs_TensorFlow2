@@ -25,29 +25,18 @@ class BottleNeck(tf.keras.layers.Layer):
         self.linear = tf.keras.layers.Activation(tf.keras.activations.linear)
 
     def call(self, inputs, training=None, **kwargs):
+        x = self.conv1(inputs)
+        x = self.bn1(x, training=training)
+        x = tf.nn.relu6(x)
+        x = self.dwconv(x)
+        x = self.bn2(x, training=training)
+        x = tf.nn.relu6(x)
+        x = self.conv2(x)
+        x = self.bn3(x, training=training)
+        x = self.linear(x)
         if self.stride == 1 and self.input_channels == self.output_channels:
-            x = self.conv1(inputs)
-            x = self.bn1(x, training=training)
-            x = tf.nn.relu6(x)
-            x = self.dwconv(x)
-            x = self.bn2(x, training=training)
-            x = tf.nn.relu6(x)
-            x = self.conv2(x)
-            x = self.bn3(x, training=training)
-            x = self.linear(x)
             x = tf.keras.layers.add([x, inputs])
-            return x
-        else:
-            x = self.conv1(inputs)
-            x = self.bn1(x, training=training)
-            x = tf.nn.relu6(x)
-            x = self.dwconv(x)
-            x = self.bn2(x, training=training)
-            x = tf.nn.relu6(x)
-            x = self.conv2(x)
-            x = self.bn3(x, training=training)
-            x = self.linear(x)
-            return x
+        return x
 
 
 def build_bottleneck(t, in_channel_num, out_channel_num, n, s):
