@@ -27,7 +27,7 @@ class SEBlock(tf.keras.layers.Layer):
 
 
 class BottleNeck(tf.keras.layers.Layer):
-    def __init__(self, in_size, out_size, exp_size, s, is_se_existing, NL, k):
+    def __init__(self, in_size, exp_size, out_size, s, is_se_existing, NL, k):
         super(BottleNeck, self).__init__()
         self.stride = s
         self.in_size = in_size

@@ -2,9 +2,9 @@ import tensorflow as tf
 from configuration import NUM_CLASSES
 
 
-class MobileNet_V1(tf.keras.Model):
+class MobileNetV1(tf.keras.Model):
     def __init__(self):
-        super(MobileNet_V1, self).__init__()
+        super(MobileNetV1, self).__init__()
         self.conv1 = tf.keras.layers.Conv2D(filters=32,
                                             kernel_size=(3, 3),
                                             strides=2,

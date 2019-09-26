@@ -8,8 +8,8 @@ from models import mobilenet_v1, mobilenet_v2
 
 
 def get_model():
-    NETWORKS = {"mobilenet_v1": mobilenet_v1.MobileNet_V1(),
-                "mobilenet_v2": mobilenet_v2.MobileNet_V2()}
+    NETWORKS = {"mobilenet_v1": mobilenet_v1.MobileNetV1(),
+                "mobilenet_v2": mobilenet_v2.MobileNetV2()}
     network = NETWORKS[model_name]
     network.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
     network.summary()

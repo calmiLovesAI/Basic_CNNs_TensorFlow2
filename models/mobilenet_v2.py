@@ -59,9 +59,9 @@ def build_bottleneck(t, in_channel_num, out_channel_num, n, s):
     return bottleneck
 
 
-class MobileNet_V2(tf.keras.Model):
+class MobileNetV2(tf.keras.Model):
     def __init__(self):
-        super(MobileNet_V2, self).__init__()
+        super(MobileNetV2, self).__init__()
         self.conv1 = tf.keras.layers.Conv2D(filters=32,
                                             kernel_size=(3, 3),
                                             strides=2,
