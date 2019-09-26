@@ -10,7 +10,7 @@ def h_swish(x):
 
 
 class SEBlock(tf.keras.layers.Layer):
-    def __init__(self, input_channels, r):
+    def __init__(self, input_channels, r=16):
         super(SEBlock, self).__init__()
         self.pool = tf.keras.layers.GlobalAveragePooling2D()
         self.fc1 = tf.keras.layers.Dense(units=input_channels // r)
@@ -27,9 +27,36 @@ class SEBlock(tf.keras.layers.Layer):
 
 
 class BottleNeck(tf.keras.layers.Layer):
-    def __init__(self):
+    def __init__(self, out_size, exp_size, s, is_se_existing, NL):
         super(BottleNeck, self).__init__()
-        pass
+        self.is_se_existing = is_se_existing
+        self.NL = NL
+        self.conv1 = tf.keras.layers.Conv2D(filters=exp_size,
+                                            kernel_size=(1, 1),
+                                            strides=1,
+                                            padding="same")
+        self.bn1 = tf.keras.layers.BatchNormalization()
+        self.dwconv = tf.keras.layers.DepthwiseConv2D(kernel_size=(3, 3),
+                                                      strides=s,
+                                                      padding="same")
+        self.bn2 = tf.keras.layers.BatchNormalization()
+        self.se = SEBlock(input_channels=exp_size)
+        self.conv2 = tf.keras.layers.Conv2D(filters=out_size,
+                                            kernel_size=(1, 1),
+                                            strides=1,
+                                            padding="same")
+        self.bn3 = tf.keras.layers.BatchNormalization()
+        self.linear = tf.keras.layers.Activation(tf.keras.activations.linear)
 
     def call(self, inputs, training=None, **kwargs):
-        pass
+        x = self.conv1(inputs)
+        x = self.bn1(x, training=training)
+        x = self.dwconv(x)
+        x = self.bn2(x, training=training)
+        if self.is_se_existing:
+            x = self.se(x)
+        x = self.conv2(x)
+        x = self.bn3(x, training=training)
+        x = self.linear(x)
+        
+        return x
