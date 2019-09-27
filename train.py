@@ -1,22 +1,26 @@
 from __future__ import absolute_import, division, print_function
 import tensorflow as tf
 from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
-    EPOCHS, BATCH_SIZE, save_model_dir, model_name
+    EPOCHS, BATCH_SIZE, save_model_dir, model_index
 from prepare_data import generate_datasets, load_and_preprocess_image
 import math
 from models import mobilenet_v1, mobilenet_v2, mobilenet_v3_large, mobilenet_v3_small
 
 
 def get_model():
-    NETWORKS = {"mobilenet_v1": mobilenet_v1.MobileNetV1(),
-                "mobilenet_v2": mobilenet_v2.MobileNetV2(),
-                "mobilenet_v3_large": mobilenet_v3_large.MobileNetV3Large(),
-                "mobilenet_v3_small": mobilenet_v3_small.MobileNetV3Small()}
-    network = NETWORKS[model_name]
+    if model_index == 0:
+        return mobilenet_v1.MobileNetV1()
+    elif model_index == 1:
+        return mobilenet_v2.MobileNetV2()
+    elif model_index == 2:
+        return mobilenet_v3_large.MobileNetV3Large()
+    elif model_index == 3:
+        return mobilenet_v3_small.MobileNetV3Small()
+
+
+def print_model_summary(network):
     network.build(input_shape=(None, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS))
     network.summary()
-
-    return network
 
 
 def process_features(features):
@@ -44,6 +48,7 @@ if __name__ == '__main__':
 
     # create model
     model = get_model()
+    print_model_summary(network=model)
 
     # define loss and optimizer
     loss_object = tf.keras.losses.SparseCategoricalCrossentropy()

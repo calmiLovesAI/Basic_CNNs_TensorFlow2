@@ -4,7 +4,7 @@ A tensorflow2 implementation of some basic CNNs.
 ## Networks included:
 + MobileNet_V1
 + MobileNet_V2
-+ [MobileNet_V3](https://github.com/calmisential/MobileNetV3_TensorFlow2.0)
++ [MobileNet_V3](https://github.com/calmisential/MobileNetV3_TensorFlow2)
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
