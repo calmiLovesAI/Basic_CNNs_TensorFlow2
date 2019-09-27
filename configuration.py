@@ -20,4 +20,5 @@ TEST_SET_RATIO = 0.2
 # choose a network
 # model_name = "mobilenet_v1"
 # model_name = "mobilenet_v2"
-model_name = "mobilenrt_v3_large"
+# model_name = "mobilenet_v3_large"
+model_name = "mobilenet_v3_small"
