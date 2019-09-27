@@ -1,5 +1,5 @@
-# Basic_CNNs_TensorFlow2.0
-A tensorflow2.0 implementation of some basic CNNs.
+# Basic_CNNs_TensorFlow2
+A tensorflow2 implementation of some basic CNNs.
 
 ## Networks included:
 + MobileNet_V1
