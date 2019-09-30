@@ -1,7 +1,6 @@
 import tensorflow as tf
 import math
-
-NUM_CLASSES = 10
+from configuration import NUM_CLASSES
 
 
 def swish(x):
@@ -123,7 +122,7 @@ class EfficientNet(tf.keras.Model):
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.block1 = build_mbconv_block(in_channels=round_filters(32, width_coefficient),
                                          out_channels=round_filters(16, width_coefficient),
-                                         layers=round_filters(1, depth_coefficient),
+                                         layers=round_repeats(1, depth_coefficient),
                                          stride=1,
                                          expansion_factor=1, k=3, drop_connect_rate=drop_connect_rate)
         self.block2 = build_mbconv_block(in_channels=round_filters(16, width_coefficient),
@@ -138,7 +137,7 @@ class EfficientNet(tf.keras.Model):
                                          expansion_factor=6, k=5, drop_connect_rate=drop_connect_rate)
         self.block4 = build_mbconv_block(in_channels=round_filters(40, width_coefficient),
                                          out_channels=round_filters(80, width_coefficient),
-                                         layers=round_repeats(2, depth_coefficient),
+                                         layers=round_repeats(3, depth_coefficient),
                                          stride=2,
                                          expansion_factor=6, k=3, drop_connect_rate=drop_connect_rate)
         self.block5 = build_mbconv_block(in_channels=round_filters(80, width_coefficient),

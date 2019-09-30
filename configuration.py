@@ -2,8 +2,8 @@
 EPOCHS = 50
 BATCH_SIZE = 8
 NUM_CLASSES = 5
-IMAGE_HEIGHT = 224
-IMAGE_WIDTH = 224
+IMAGE_HEIGHT = 300
+IMAGE_WIDTH = 300
 CHANNELS = 3
 save_model_dir = "saved_model/"
 dataset_dir = "dataset/"
