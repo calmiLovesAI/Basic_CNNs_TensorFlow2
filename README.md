@@ -54,5 +54,5 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 1. MobileNet_V1: [Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
 2. MobileNet_V2: [Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)
 3. MobileNet_V3: [Searching for MobileNetV3](https://arxiv.org/abs/1905.02244)
-4. EfficientNet: [EffcientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)
+4. EfficientNet: [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)
 5. The official code of EfficientNet: https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet
