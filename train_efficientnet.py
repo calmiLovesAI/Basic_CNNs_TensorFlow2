@@ -29,7 +29,7 @@ if __name__ == '__main__':
     train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets()
 
     # create model
-    # b0 = get_efficient_net(1.0, 1.1, 224, 0.2)
+    # b0 = get_efficient_net(1.0, 1.0, 224, 0.2)
     # b1 = get_efficient_net(1.0, 1.1, 240, 0.2)
     # b2 = get_efficient_net(1.1, 1.2, 260, 0.3)
     # b3 = get_efficient_net(1.2, 1.4, 300, 0.3)
