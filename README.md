@@ -46,7 +46,7 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
 4. Run **to_tfrecord.py** to generate tfrecord files.
 5. Change the corresponding parameters in **config.py**.
 6. Run **train.py** to start training.<br/>
-If you want to train the *EfficientNet*, you should change the params in **train_efficientnet.py**, remember to change the IMAGE_HEIGHT and IMAGE_WIDTH to *resolution* in the params, eventually you can run **train_efficientnet.py** to start training.
+If you want to train the *EfficientNet*, you should change the IMAGE_HEIGHT and IMAGE_WIDTH to *resolution* in the params, and then run **train.py** to start training.
 ## Evaluate
 Run **evaluate.py** to evaluate the model's performance on the test dataset.
 
