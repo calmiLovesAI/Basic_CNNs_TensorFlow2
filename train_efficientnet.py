@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # b5 = get_efficient_net(1.6, 2.2, 456, 0.4)
     # b6 = get_efficient_net(1.8, 2.6, 528, 0.5)
     # b7 = get_efficient_net(2.0, 3.1, 600, 0.5)
-    model = get_efficient_net(1.2, 1.4, 300, 0.3)
+    model = get_efficient_net(1.1, 1.2, 260, 0.3)
 
 
     # define loss and optimizer
