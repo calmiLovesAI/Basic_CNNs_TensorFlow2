@@ -38,7 +38,7 @@ class GroupConv2D(tf.keras.layers.Layer):
 
 
 class ResNeXt_BottleNeck(tf.keras.layers.Layer):
-    def __init__(self, strides, filters, groups):
+    def __init__(self, filters, strides, groups):
         super(ResNeXt_BottleNeck, self).__init__()
         self.conv1 = tf.keras.layers.Conv2D(filters=filters,
                                             kernel_size=(1, 1),
@@ -79,3 +79,22 @@ class ResNeXt_BottleNeck(tf.keras.layers.Layer):
 
         output = tf.nn.relu(tf.keras.layers.add([x, shortcut]))
         return output
+
+
+class ResNeXtBlock(tf.keras.layers.Layer):
+    def __init__(self, filters, strides, groups, repeat_num):
+        super(ResNeXtBlock, self).__init__()
+        self.repeat_num = repeat_num
+        self.part1 = ResNeXt_BottleNeck(filters=filters,
+                                        strides=strides,
+                                        groups=groups)
+        self.part2 = ResNeXt_BottleNeck(filters=filters,
+                                        strides=1,
+                                        groups=groups)
+
+    def call(self, inputs, training=None, **kwargs):
+        x = self.part1(inputs, training=training)
+        for _ in range(1, self.repeat_num):
+            x = self.part2(x, training=training)
+
+        return x
