@@ -5,6 +5,8 @@ from configuration import NUM_CLASSES
 
 class ResNeXt(tf.keras.Model):
     def __init__(self, repeat_num_list, cardinality):
+        if len(repeat_num_list) != 4:
+            raise ValueError("The length of repeat_num_list must be four.")
         super(ResNeXt, self).__init__()
         self.conv1 = tf.keras.layers.Conv2D(filters=64,
                                             kernel_size=(7, 7),
@@ -12,9 +14,10 @@ class ResNeXt(tf.keras.Model):
                                             padding="same")
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.pool1 = tf.keras.layers.MaxPool2D(pool_size=(3, 3),
-                                               strides=2)
+                                               strides=2,
+                                               padding="same")
         self.block1 = ResNeXtBlock(filters=128,
-                                   strides=2,
+                                   strides=1,
                                    groups=cardinality,
                                    repeat_num=repeat_num_list[0])
         self.block2 = ResNeXtBlock(filters=256,
@@ -56,5 +59,5 @@ def ResNeXt50():
 
 
 def ResNeXt101():
-    return ResNeXt(repeat_num_list=[3, 4, 23, 3],
+    return ResNeXt(repeat_num_list=[30, 40, 23, 30],
                    cardinality=32)

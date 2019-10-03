@@ -4,7 +4,8 @@ from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
     EPOCHS, BATCH_SIZE, save_model_dir, model_index
 from prepare_data import generate_datasets, load_and_preprocess_image
 import math
-from models import mobilenet_v1, mobilenet_v2, mobilenet_v3_large, mobilenet_v3_small, efficientnet
+from models import mobilenet_v1, mobilenet_v2, mobilenet_v3_large, mobilenet_v3_small, \
+    efficientnet, resnext
 
 
 def get_model():
@@ -32,6 +33,10 @@ def get_model():
         return efficientnet.efficient_net_b6()
     elif model_index == 11:
         return efficientnet.efficient_net_b7()
+    elif model_index == 12:
+        return resnext.ResNeXt50()
+    elif model_index == 13:
+        return resnext.ResNeXt101()
 
 
 def print_model_summary(network):

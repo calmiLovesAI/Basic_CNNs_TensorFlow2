@@ -27,13 +27,13 @@ class GroupConv2D(tf.keras.layers.Layer):
                                            data_format=data_format,
                                            dilation_rate=dilation_rate,
                                            use_bias=use_bias)
-        self.feature_map_list = []
 
     def call(self, inputs, **kwargs):
+        feature_map_list = []
         for i in range(self.groups):
             x_i = self.conv(inputs[:, :, :, i*self.group_in_num: (i + 1) * self.group_in_num])
-            self.feature_map_list.append(x_i)
-        out = tf.concat(self.feature_map_list, axis=-1)
+            feature_map_list.append(x_i)
+        out = tf.concat(feature_map_list, axis=-1)
         return out
 
 
