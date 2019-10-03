@@ -4,8 +4,8 @@ import tensorflow as tf
 def _parse_image_function(example_proto):
     # Parse the input tf.Example proto.
     return tf.io.parse_single_example(example_proto, {
-        'label': tf.io.FixedLenFeature([], tf.int64),
-        'image_raw': tf.io.FixedLenFeature([], tf.string),
+        'label': tf.io.FixedLenFeature([], tf.dtypes.int64),
+        'image_raw': tf.io.FixedLenFeature([], tf.dtypes.string),
     })
 
 
