@@ -51,7 +51,7 @@ If you want to train the *EfficientNet*, you should change the IMAGE_HEIGHT and 
 Run **evaluate.py** to evaluate the model's performance on the test dataset.
 
 ## Different input image sizes for different neural networks
-Neural Network | Type | Input Image Size ($height \times width$)
+Neural Network | Type | $Input Image Size (height \times width)$
 :-: | :-: | :-:
 MobileNet_V1 | MobileNet | ($224\times224$)
 MobileNet_V2 | MobileNet | ($224\times224$)
