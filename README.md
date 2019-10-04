@@ -6,6 +6,7 @@ A tensorflow2 implementation of some basic CNNs.
 + MobileNet_V2
 + [MobileNet_V3](https://github.com/calmisential/MobileNetV3_TensorFlow2)
 + [EfficientNet](https://github.com/calmisential/EfficientNet_TensorFlow2)
++ [ResNeXt](https://github.com/calmisential/ResNeXt_TensorFlow2)
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
@@ -51,14 +52,40 @@ If you want to train the *EfficientNet*, you should change the IMAGE_HEIGHT and 
 Run **evaluate.py** to evaluate the model's performance on the test dataset.
 
 ## Different input image sizes for different neural networks
-Neural Network | Type | Input Image Size (height * width)
-:-: | :-: | :-:
-MobileNet_V1 | MobileNet | (224 * 224)
-MobileNet_V2 | MobileNet | (224 * 224)
-MobileNet_V3 | MobileNet | (224 * 224)
-EfficientNet (B0~B7) | EfficientNet | -
-ResNeXt50 | ResNeXt | (224 * 224)
-ResNeXt101 | ResNeXt | (224 * 224)
+<table>
+     <tr align="center">
+          <th>Type</th>
+          <th>Neural Network</th>
+          <th>Input Image Size (height * width)</th>
+     </tr>
+     <tr align="center">
+          <td rowspan="3">MobileNet</td>
+          <td>MobileNet_V1</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>MobileNet_V2</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>MobileNet_V3</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>EfficientNet</td>
+          <td>EfficientNet(B0~B7)</td>
+          <td>/</td>
+     </tr>
+     <tr align="center">
+          <td rowspan="2">ResNeXt</td>
+          <td>ResNeXt50</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>ResNeXt101</td>
+          <td>(224 * 224)</td>
+     </tr>
+</table>
 
 ## References
 1. MobileNet_V1: [Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
