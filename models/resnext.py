@@ -1,5 +1,5 @@
 import tensorflow as tf
-from models.resnext_block import ResNeXtBlock
+from models.resnext_block import build_ResNeXt_block
 from configuration import NUM_CLASSES
 
 
@@ -16,22 +16,22 @@ class ResNeXt(tf.keras.Model):
         self.pool1 = tf.keras.layers.MaxPool2D(pool_size=(3, 3),
                                                strides=2,
                                                padding="same")
-        self.block1 = ResNeXtBlock(filters=128,
-                                   strides=1,
-                                   groups=cardinality,
-                                   repeat_num=repeat_num_list[0])
-        self.block2 = ResNeXtBlock(filters=256,
-                                   strides=2,
-                                   groups=cardinality,
-                                   repeat_num=repeat_num_list[1])
-        self.block3 = ResNeXtBlock(filters=512,
-                                   strides=2,
-                                   groups=cardinality,
-                                   repeat_num=repeat_num_list[2])
-        self.block4 = ResNeXtBlock(filters=1024,
-                                   strides=2,
-                                   groups=cardinality,
-                                   repeat_num=repeat_num_list[3])
+        self.block1 = build_ResNeXt_block(filters=128,
+                                          strides=1,
+                                          groups=cardinality,
+                                          repeat_num=repeat_num_list[0])
+        self.block2 = build_ResNeXt_block(filters=256,
+                                          strides=2,
+                                          groups=cardinality,
+                                          repeat_num=repeat_num_list[1])
+        self.block3 = build_ResNeXt_block(filters=512,
+                                          strides=2,
+                                          groups=cardinality,
+                                          repeat_num=repeat_num_list[2])
+        self.block4 = build_ResNeXt_block(filters=1024,
+                                          strides=2,
+                                          groups=cardinality,
+                                          repeat_num=repeat_num_list[3])
         self.pool2 = tf.keras.layers.GlobalAveragePooling2D()
         self.fc = tf.keras.layers.Dense(units=NUM_CLASSES,
                                         activation=tf.keras.activations.softmax)
@@ -59,5 +59,5 @@ def ResNeXt50():
 
 
 def ResNeXt101():
-    return ResNeXt(repeat_num_list=[30, 40, 23, 30],
+    return ResNeXt(repeat_num_list=[3, 4, 23, 3],
                    cardinality=32)

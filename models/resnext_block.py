@@ -81,20 +81,14 @@ class ResNeXt_BottleNeck(tf.keras.layers.Layer):
         return output
 
 
-class ResNeXtBlock(tf.keras.layers.Layer):
-    def __init__(self, filters, strides, groups, repeat_num):
-        super(ResNeXtBlock, self).__init__()
-        self.repeat_num = repeat_num
-        self.part1 = ResNeXt_BottleNeck(filters=filters,
-                                        strides=strides,
-                                        groups=groups)
-        self.part2 = ResNeXt_BottleNeck(filters=filters,
-                                        strides=1,
-                                        groups=groups)
+def build_ResNeXt_block(filters, strides, groups, repeat_num):
+    block = tf.keras.Sequential()
+    block.add(ResNeXt_BottleNeck(filters=filters,
+                                 strides=strides,
+                                 groups=groups))
+    for _ in range(1, repeat_num):
+        block.add(ResNeXt_BottleNeck(filters=filters,
+                                     strides=1,
+                                     groups=groups))
 
-    def call(self, inputs, training=None, **kwargs):
-        x = self.part1(inputs, training=training)
-        for _ in range(1, self.repeat_num):
-            x = self.part2(x, training=training)
-
-        return x
+    return block
