@@ -94,3 +94,5 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 4. EfficientNet: [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)
 5. The official code of EfficientNet: https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet
 6. ResNeXt: [Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431)
+7. Inception_V4/Inception_ResNet_V1/Inception_ResNet_V2: [Inception-v4,  Inception-ResNet and the Impact of Residual Connectionson Learning](https://arxiv.org/abs/1602.07261)
+8. The official implementation of Inception_V4: https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v4.py
