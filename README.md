@@ -85,6 +85,19 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
           <td>ResNeXt101</td>
           <td>(224 * 224)</td>
      </tr>
+     <tr align="center">
+          <td rowspan="3">Inception</td>
+          <td>InceptionV4</td>
+          <td>(299 * 299)</td>
+     </tr>
+     <tr align="center">
+          <td>Inception_ResNet_V1</td>
+          <td>(299 * 299)</td>
+     </tr>
+     <tr align="center">
+          <td>Inception_ResNet_V2</td>
+          <td>(299 * 299)</td>
+     </tr>
 </table>
 
 ## References
@@ -96,3 +109,4 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 6. ResNeXt: [Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/abs/1611.05431)
 7. Inception_V4/Inception_ResNet_V1/Inception_ResNet_V2: [Inception-v4,  Inception-ResNet and the Impact of Residual Connectionson Learning](https://arxiv.org/abs/1602.07261)
 8. The official implementation of Inception_V4: https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v4.py
+9. The official implementation of Inception_ResNet_V2: https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_resnet_v2.py
