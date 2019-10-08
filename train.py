@@ -41,6 +41,8 @@ def get_model():
         return inception_v4.InceptionV4()
     elif model_index == 15:
         return inception_resnet_v1.InceptionResNetV1()
+    elif model_index == 16:
+        return inception_resnet_v2.InceptionResNetV2()
 
 
 def print_model_summary(network):

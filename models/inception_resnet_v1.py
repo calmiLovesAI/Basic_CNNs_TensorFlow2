@@ -1,6 +1,5 @@
 import tensorflow as tf
-from models.inception_modules import BasicConv2D, Conv2DLinear
-from models.inception_modules import ReductionA
+from models.inception_modules import BasicConv2D, Conv2DLinear, ReductionA
 from configuration import NUM_CLASSES
 
 
