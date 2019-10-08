@@ -7,6 +7,7 @@ A tensorflow2 implementation of some basic CNNs.
 + [MobileNet_V3](https://github.com/calmisential/MobileNetV3_TensorFlow2)
 + [EfficientNet](https://github.com/calmisential/EfficientNet_TensorFlow2)
 + [ResNeXt](https://github.com/calmisential/ResNeXt_TensorFlow2)
++ [InceptionV4, InceptionResNetV1, InceptionResNetV2](https://github.com/calmisential/InceptionV4_TensorFlow2)
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>

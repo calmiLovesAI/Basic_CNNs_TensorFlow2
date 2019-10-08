@@ -62,13 +62,13 @@ def process_features(features):
 
     return images, labels
 
+
 if __name__ == '__main__':
     # GPU settings
     gpus = tf.config.experimental.list_physical_devices('GPU')
     if gpus:
         for gpu in gpus:
             tf.config.experimental.set_memory_growth(gpu, True)
-
 
     # get the dataset
     train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets()
@@ -119,7 +119,6 @@ if __name__ == '__main__':
                                                                                      math.ceil(train_count / BATCH_SIZE),
                                                                                      train_loss.result().numpy(),
                                                                                      train_accuracy.result().numpy()))
-
 
         for features in valid_dataset:
             valid_images, valid_labels = process_features(features)
