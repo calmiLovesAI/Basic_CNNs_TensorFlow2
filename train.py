@@ -56,7 +56,7 @@ def process_features(features):
     for image in image_raw:
         image_tensor = load_and_preprocess_image(image)
         image_tensor_list.append(image_tensor)
-    image_tensors = tf.stack(image_tensor_list, axis=0)
+    images = tf.stack(image_tensor_list, axis=0)
     labels = features['label'].numpy()
 
     return images, labels
