@@ -2,8 +2,8 @@
 EPOCHS = 50
 BATCH_SIZE = 8
 NUM_CLASSES = 5
-IMAGE_HEIGHT = 299
-IMAGE_WIDTH = 299
+IMAGE_HEIGHT = 224
+IMAGE_WIDTH = 224
 CHANNELS = 3
 save_model_dir = "saved_model/"
 dataset_dir = "dataset/"
@@ -23,6 +23,7 @@ TEST_SET_RATIO = 0.2
 # 8: efficient_net_b4, 9: efficient_net_b5, 10: efficient_net_b6, 11: efficient_net_b7
 # 12: ResNeXt50, 13: ResNeXt101
 # 14: InceptionV4, 15: InceptionResNetV1, 16: InceptionResNetV2
+# 17: SE_ResNet_50, 18: SE_ResNet_101, 19: SE_ResNet_152
 
 # EfficientNets:
 # b0 = (1.0, 1.0, 224, 0.2)
@@ -33,5 +34,5 @@ TEST_SET_RATIO = 0.2
 # b5 = (1.6, 2.2, 456, 0.4)
 # b6 = (1.8, 2.6, 528, 0.5)
 # b7 = (2.0, 3.1, 600, 0.5)
-model_index = 16
+model_index = 17
 
