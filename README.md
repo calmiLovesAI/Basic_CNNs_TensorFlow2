@@ -9,6 +9,7 @@ A tensorflow2 implementation of some basic CNNs.
 + [ResNeXt](https://github.com/calmisential/ResNeXt_TensorFlow2)
 + [InceptionV4, InceptionResNetV1, InceptionResNetV2](https://github.com/calmisential/InceptionV4_TensorFlow2)
 + SE_ResNet_50, SE_ResNet_101, SE_ResNet_152
++ SqueezeNet
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
@@ -113,6 +114,11 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
           <td>SE_ResNet_152</td>
           <td>(224 * 224)</td>
      </tr>
+     </tr align="center">
+          <td>SqueezeNet</td>
+          <td align="center">SqueezeNet</td>
+          <td align="center">(224 * 224)</td>
+     </tr>
 </table>
 
 ## References
@@ -126,3 +132,4 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 8. The official implementation of Inception_V4: https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v4.py
 9. The official implementation of Inception_ResNet_V2: https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_resnet_v2.py
 10. SENet: [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
+11. SqueezeNet: [SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size](https://arxiv.org/abs/1602.07360)
