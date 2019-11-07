@@ -145,11 +145,11 @@ if __name__ == '__main__':
         valid_accuracy.reset_states()
 
         if (epoch + 1) % save_every_n_epoch == 0:
-            model.save_weights(filepath=save_model_dir+"epoch-{}/".format(epoch), save_format='tf')
+            model.save_weights(filepath=save_model_dir+"epoch-{}".format(epoch), save_format='tf')
 
 
     # save weights
-    # model.save_weights(filepath=save_model_dir+"model/", save_format='tf')
+    # model.save_weights(filepath=save_model_dir+"model", save_format='tf')
 
     # save the whole model
     tf.saved_model.save(model, save_model_dir)
