@@ -6,6 +6,7 @@ IMAGE_HEIGHT = 224
 IMAGE_WIDTH = 224
 CHANNELS = 3
 save_model_dir = "saved_model/"
+save_every_n_epoch = 10
 dataset_dir = "dataset/"
 train_dir = dataset_dir + "train"
 valid_dir = dataset_dir + "valid"
