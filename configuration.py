@@ -26,6 +26,7 @@ TEST_SET_RATIO = 0.2
 # 14: InceptionV4, 15: InceptionResNetV1, 16: InceptionResNetV2
 # 17: SE_ResNet_50, 18: SE_ResNet_101, 19: SE_ResNet_152
 # 20: SqueezeNet
+# 21: DenseNet_121, 22: DenseNet_169, 23: DenseNet_201, 24: DenseNet_269
 
 # EfficientNets:
 # b0 = (1.0, 1.0, 224, 0.2)
@@ -36,5 +37,5 @@ TEST_SET_RATIO = 0.2
 # b5 = (1.6, 2.2, 456, 0.4)
 # b6 = (1.8, 2.6, 528, 0.5)
 # b7 = (2.0, 3.1, 600, 0.5)
-model_index = 3
+model_index = 21
 

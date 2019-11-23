@@ -6,7 +6,7 @@ from prepare_data import generate_datasets, load_and_preprocess_image
 import math
 from models import mobilenet_v1, mobilenet_v2, mobilenet_v3_large, mobilenet_v3_small, \
     efficientnet, resnext, inception_v4, inception_resnet_v1, inception_resnet_v2, \
-    se_resnet, squeezenet
+    se_resnet, squeezenet, densenet
 
 
 def get_model():
@@ -52,6 +52,14 @@ def get_model():
         return se_resnet.se_resnet_152()
     elif model_index == 20:
         return squeezenet.SqueezeNet()
+    elif model_index == 21:
+        return densenet.densenet_121()
+    elif model_index == 22:
+        return densenet.densenet_169()
+    elif model_index == 23:
+        return densenet.densenet_201()
+    elif model_index == 24:
+        return densenet.densenet_264()
 
 
 def print_model_summary(network):
@@ -95,7 +103,7 @@ if __name__ == '__main__':
     valid_loss = tf.keras.metrics.Mean(name='valid_loss')
     valid_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='valid_accuracy')
 
-    @tf.function
+    # @tf.function
     def train_step(image_batch, label_batch):
         with tf.GradientTape() as tape:
             predictions = model(image_batch, training=True)
@@ -106,7 +114,7 @@ if __name__ == '__main__':
         train_loss.update_state(values=loss)
         train_accuracy.update_state(y_true=label_batch, y_pred=predictions)
 
-    @tf.function
+    # @tf.function
     def valid_step(image_batch, label_batch):
         predictions = model(image_batch, training=False)
         v_loss = loss_object(label_batch, predictions)
