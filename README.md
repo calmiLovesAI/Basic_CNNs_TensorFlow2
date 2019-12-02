@@ -11,6 +11,7 @@ A tensorflow2 implementation of some basic CNNs.
 + SE_ResNet_50, SE_ResNet_101, SE_ResNet_152
 + SqueezeNet
 + [DenseNet](https://github.com/calmisential/DenseNet_TensorFlow2)
++ ShuffleNetV2
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
@@ -137,6 +138,11 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
           <td>DenseNet_269</td>
           <td>(224 * 224)</td>
      </tr>
+     <tr align="center">
+          <td>ShuffleNetV2</td>
+          <td>ShuffleNetV2</td>
+          <td>(224 * 224)</td>
+     </tr>
 </table>
 
 ## References
@@ -153,3 +159,6 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 11. SqueezeNet: [SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size](https://arxiv.org/abs/1602.07360)
 12. DenseNet: [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993)
 13. https://zhuanlan.zhihu.com/p/37189203
+14. ShuffleNetV2: [ShuffleNet V2: Practical Guidelines for Eﬃcient CNN Architecture Design
+](https://arxiv.org/abs/1807.11164)
+15. https://zhuanlan.zhihu.com/p/48261931
