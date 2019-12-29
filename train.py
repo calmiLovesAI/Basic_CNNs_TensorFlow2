@@ -165,10 +165,10 @@ if __name__ == '__main__':
 
 
     # save weights
-    # model.save_weights(filepath=save_model_dir+"model", save_format='tf')
+    model.save_weights(filepath=save_model_dir+"model", save_format='tf')
 
     # save the whole model
-    tf.saved_model.save(model, save_model_dir)
+    # tf.saved_model.save(model, save_model_dir)
 
     # convert to tensorflow lite format
     # converter = tf.lite.TFLiteConverter.from_saved_model(save_model_dir)

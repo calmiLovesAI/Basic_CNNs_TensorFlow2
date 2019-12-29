@@ -14,16 +14,16 @@ if __name__ == '__main__':
     # get the original_dataset
     train_dataset, valid_dataset, test_dataset, train_count, valid_count, test_count = generate_datasets()
     # load the model
-    # model = get_model()
-    # model.load_weights(filepath=save_model_dir)
-    model = tf.saved_model.load(save_model_dir)
+    model = get_model()
+    model.load_weights(filepath=save_model_dir)
+    # model = tf.saved_model.load(save_model_dir)
 
     # Get the accuracy on the test set
     loss_object = tf.keras.metrics.SparseCategoricalCrossentropy()
     test_loss = tf.keras.metrics.Mean()
     test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy()
 
-    @tf.function
+    # @tf.function
     def test_step(images, labels):
         predictions = model(images, training=False)
         t_loss = loss_object(labels, predictions)
