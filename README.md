@@ -12,6 +12,7 @@ A tensorflow2 implementation of some basic CNNs.
 + SqueezeNet
 + [DenseNet](https://github.com/calmisential/DenseNet_TensorFlow2)
 + ShuffleNetV2
++ [ResNet](https://github.com/calmisential/TensorFlow2.0_ResNet)
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
@@ -143,6 +144,27 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
           <td>ShuffleNetV2</td>
           <td>(224 * 224)</td>
      </tr>
+     <tr align="center">
+          <td rowspan="5">ResNet</td>
+          <td>ResNet_18</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>ResNet_34</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>ResNet_50</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>ResNet_101</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>ResNet_152</td>
+          <td>(224 * 224)</td>
+     </tr>
 </table>
 
 ## References
@@ -162,3 +184,4 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 14. ShuffleNetV2: [ShuffleNet V2: Practical Guidelines for Eﬃcient CNN Architecture Design
 ](https://arxiv.org/abs/1807.11164)
 15. https://zhuanlan.zhihu.com/p/48261931
+16. ResNet: [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)

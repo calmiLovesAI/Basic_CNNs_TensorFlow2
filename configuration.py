@@ -28,6 +28,7 @@ TEST_SET_RATIO = 0.2
 # 20: SqueezeNet
 # 21: DenseNet_121, 22: DenseNet_169, 23: DenseNet_201, 24: DenseNet_269
 # 25 ~ 28 : ShuffleNetV2 (0.5x, 1.0x, 1.5x, 2.0x)
+# 29: ResNet_18, 30: ResNet_34, 31: ResNet_50, 32: ResNet_101, 33: ResNet_152
 
 # EfficientNets:
 # b0 = (1.0, 1.0, 224, 0.2)
