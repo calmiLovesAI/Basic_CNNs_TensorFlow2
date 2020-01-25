@@ -23,7 +23,7 @@ def get_images_and_labels(data_root_dir):
     # get labels' names
     label_names = sorted(item.name for item in data_root.glob('*/'))
     # dict: {label : index}
-    label_to_index = dict((index, label) for label, index in enumerate(label_names))
+    label_to_index = dict((label, index) for index, label in enumerate(label_names))
     # get all images' labels
     all_image_label = [label_to_index[pathlib.Path(single_image_path).parent.name] for single_image_path in all_image_path]
 
