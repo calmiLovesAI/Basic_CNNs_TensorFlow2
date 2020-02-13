@@ -183,7 +183,8 @@ if __name__ == '__main__':
     # tf.saved_model.save(model, save_model_dir)
 
     # convert to tensorflow lite format
-    # converter = tf.lite.TFLiteConverter.from_saved_model(save_model_dir)
+    # model._set_inputs(inputs=tf.random.normal(shape=(1, IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS)))
+    # converter = tf.lite.TFLiteConverter.from_keras_model(model)
     # tflite_model = converter.convert()
     # open("converted_model.tflite", "wb").write(tflite_model)
 
