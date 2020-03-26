@@ -3,10 +3,6 @@ import math
 from configuration import NUM_CLASSES
 
 
-def swish(x):
-    return x * tf.nn.sigmoid(x)
-
-
 def round_filters(filters, multiplier):
     depth_divisor = 8
     min_depth = None
@@ -43,7 +39,7 @@ class SEBlock(tf.keras.layers.Layer):
         branch = tf.expand_dims(input=branch, axis=1)
         branch = tf.expand_dims(input=branch, axis=1)
         branch = self.reduce_conv(branch)
-        branch = swish(branch)
+        branch = tf.nn.swish(branch)
         branch = self.expand_conv(branch)
         branch = tf.nn.sigmoid(branch)
         output = inputs * branch
@@ -60,28 +56,31 @@ class MBConv(tf.keras.layers.Layer):
         self.conv1 = tf.keras.layers.Conv2D(filters=in_channels * expansion_factor,
                                             kernel_size=(1, 1),
                                             strides=1,
-                                            padding="same")
+                                            padding="same",
+                                            use_bias=False)
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.dwconv = tf.keras.layers.DepthwiseConv2D(kernel_size=(k, k),
                                                       strides=stride,
-                                                      padding="same")
+                                                      padding="same",
+                                                      use_bias=False)
         self.bn2 = tf.keras.layers.BatchNormalization()
         self.se = SEBlock(input_channels=in_channels * expansion_factor)
         self.conv2 = tf.keras.layers.Conv2D(filters=out_channels,
                                             kernel_size=(1, 1),
                                             strides=1,
-                                            padding="same")
+                                            padding="same",
+                                            use_bias=False)
         self.bn3 = tf.keras.layers.BatchNormalization()
         self.dropout = tf.keras.layers.Dropout(rate=drop_connect_rate)
 
     def call(self, inputs, training=None, **kwargs):
         x = self.conv1(inputs)
         x = self.bn1(x, training=training)
-        x = swish(x)
+        x = tf.nn.swish(x)
         x = self.dwconv(x)
         x = self.bn2(x, training=training)
         x = self.se(x)
-        x = swish(x)
+        x = tf.nn.swish(x)
         x = self.conv2(x)
         x = self.bn3(x, training=training)
         if self.stride == 1 and self.in_channels == self.out_channels:
@@ -118,7 +117,8 @@ class EfficientNet(tf.keras.Model):
         self.conv1 = tf.keras.layers.Conv2D(filters=round_filters(32, width_coefficient),
                                             kernel_size=(3, 3),
                                             strides=2,
-                                            padding="same")
+                                            padding="same",
+                                            use_bias=False)
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.block1 = build_mbconv_block(in_channels=round_filters(32, width_coefficient),
                                          out_channels=round_filters(16, width_coefficient),
@@ -159,7 +159,8 @@ class EfficientNet(tf.keras.Model):
         self.conv2 = tf.keras.layers.Conv2D(filters=round_filters(1280, width_coefficient),
                                             kernel_size=(1, 1),
                                             strides=1,
-                                            padding="same")
+                                            padding="same",
+                                            use_bias=False)
         self.bn2 = tf.keras.layers.BatchNormalization()
         self.pool = tf.keras.layers.GlobalAveragePooling2D()
         self.dropout = tf.keras.layers.Dropout(rate=dropout_rate)
@@ -169,7 +170,7 @@ class EfficientNet(tf.keras.Model):
     def call(self, inputs, training=None, mask=None):
         x = self.conv1(inputs)
         x = self.bn1(x, training=training)
-        x = swish(x)
+        x = tf.nn.swish(x)
 
         x = self.block1(x)
         x = self.block2(x)
@@ -181,7 +182,7 @@ class EfficientNet(tf.keras.Model):
 
         x = self.conv2(x)
         x = self.bn2(x, training=training)
-        x = swish(x)
+        x = tf.nn.swish(x)
         x = self.pool(x)
         x = self.dropout(x, training=training)
         x = self.fc(x)
