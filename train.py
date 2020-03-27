@@ -87,11 +87,11 @@ def print_model_summary(network):
     network.summary()
 
 
-def process_features(features):
+def process_features(features, data_augmentation):
     image_raw = features['image_raw'].numpy()
     image_tensor_list = []
     for image in image_raw:
-        image_tensor = load_and_preprocess_image(image)
+        image_tensor = load_and_preprocess_image(image, data_augmentation=data_augmentation)
         image_tensor_list.append(image_tensor)
     images = tf.stack(image_tensor_list, axis=0)
     labels = features['label'].numpy()
@@ -147,9 +147,9 @@ if __name__ == '__main__':
         step = 0
         for features in train_dataset:
             step += 1
-            images, labels = process_features(features)
+            images, labels = process_features(features, data_augmentation=True)
             train_step(images, labels)
-            print("Epoch: {}/{}, step: {}/{}, loss: {:.5f}, accuracy: {:.5f}".format(epoch + 1,
+            print("Epoch: {}/{}, step: {}/{}, loss: {:.5f}, accuracy: {:.5f}".format(epoch,
                                                                                      EPOCHS,
                                                                                      step,
                                                                                      math.ceil(train_count / BATCH_SIZE),
@@ -157,7 +157,7 @@ if __name__ == '__main__':
                                                                                      train_accuracy.result().numpy()))
 
         for features in valid_dataset:
-            valid_images, valid_labels = process_features(features)
+            valid_images, valid_labels = process_features(features, data_augmentation=False)
             valid_step(valid_images, valid_labels)
 
         print("Epoch: {}/{}, train loss: {:.5f}, train accuracy: {:.5f}, "
@@ -172,7 +172,7 @@ if __name__ == '__main__':
         valid_loss.reset_states()
         valid_accuracy.reset_states()
 
-        if (epoch + 1) % save_every_n_epoch == 0:
+        if epoch % save_every_n_epoch == 0:
             model.save_weights(filepath=save_model_dir+"epoch-{}".format(epoch), save_format='tf')
 
 

@@ -31,7 +31,7 @@ if __name__ == '__main__':
         test_accuracy(labels, predictions)
 
     for features in test_dataset:
-        test_images, test_labels = process_features(features)
+        test_images, test_labels = process_features(features, data_augmentation=False)
         test_step(test_images, test_labels)
         print("loss: {:.5f}, test accuracy: {:.5f}".format(test_loss.result(),
                                                            test_accuracy.result()))

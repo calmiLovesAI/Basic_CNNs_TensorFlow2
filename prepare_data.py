@@ -5,15 +5,21 @@ from configuration import IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS, \
 from parse_tfrecord import get_parsed_dataset
 
 
-def load_and_preprocess_image(image):
+def load_and_preprocess_image(image_raw, data_augmentation=False):
     # decode
-    img_tensor = tf.io.decode_jpeg(contents=image, channels=CHANNELS)
-    # resize
-    img_tensor = tf.image.resize(img_tensor, [IMAGE_HEIGHT, IMAGE_WIDTH])
-    img_tensor = tf.dtypes.cast(img_tensor, tf.dtypes.float32)
-    # normalization
-    img = img_tensor / 255.0
-    return img
+    image_tensor = tf.io.decode_image(contents=image_raw, channels=CHANNELS, dtype=tf.dtypes.float32)
+
+    if data_augmentation:
+        image = tf.image.random_flip_left_right(image=image_tensor)
+        image = tf.image.resize_with_crop_or_pad(image=image,
+                                                 target_height=int(IMAGE_HEIGHT * 1.2),
+                                                 target_width=int(IMAGE_WIDTH * 1.2))
+        image = tf.image.random_crop(value=image, size=[IMAGE_HEIGHT, IMAGE_WIDTH, CHANNELS])
+        image = tf.image.random_brightness(image=image, max_delta=0.5)
+    else:
+        image = tf.image.resize(image_tensor, [IMAGE_HEIGHT, IMAGE_WIDTH])
+
+    return image
 
 
 def get_images_and_labels(data_root_dir):
