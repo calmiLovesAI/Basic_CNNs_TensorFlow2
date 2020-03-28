@@ -14,7 +14,7 @@ def get_single_picture_prediction(model, picture_dir):
 
 if __name__ == '__main__':
     # GPU settings
-    gpus = tf.config.experimental.list_physical_devices('GPU')
+    gpus = tf.config.list_physical_devices('GPU')
     if gpus:
         for gpu in gpus:
             tf.config.experimental.set_memory_growth(gpu, True)

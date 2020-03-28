@@ -161,7 +161,7 @@ if __name__ == '__main__':
             valid_step(valid_images, valid_labels)
 
         print("Epoch: {}/{}, train loss: {:.5f}, train accuracy: {:.5f}, "
-              "valid loss: {:.5f}, valid accuracy: {:.5f}".format(epoch + 1,
+              "valid loss: {:.5f}, valid accuracy: {:.5f}".format(epoch,
                                                                   EPOCHS,
                                                                   train_loss.result().numpy(),
                                                                   train_accuracy.result().numpy(),
