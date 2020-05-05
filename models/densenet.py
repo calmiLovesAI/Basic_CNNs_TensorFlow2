@@ -35,18 +35,17 @@ class DenseBlock(tf.keras.layers.Layer):
         self.growth_rate = growth_rate
         self.drop_rate = drop_rate
         self.features_list = []
-
-    def _make_layer(self, x, training):
-        y = BottleNeck(growth_rate=self.growth_rate, drop_rate=self.drop_rate)(x, training=training)
-        self.features_list.append(y)
-        y = tf.concat(self.features_list, axis=-1)
-        return y
+        self.bottle_necks = []
+        for i in range(self.num_layers):
+            self.bottle_necks.append(BottleNeck(growth_rate=self.growth_rate, drop_rate=self.drop_rate))
 
     def call(self, inputs, training=None, **kwargs):
         self.features_list.append(inputs)
-        x = self._make_layer(inputs, training=training)
-        for i in range(1, self.num_layers):
-            x = self._make_layer(x, training=training)
+        x = inputs
+        for i in range(self.num_layers):
+            y = self.bottle_necks[i](x, training=training)
+            self.features_list.append(y)
+            x = tf.concat(self.features_list, axis=-1)
         self.features_list.clear()
         return x
 
