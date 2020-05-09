@@ -6,7 +6,7 @@ from prepare_data import generate_datasets, load_and_preprocess_image
 import math
 from models import mobilenet_v1, mobilenet_v2, mobilenet_v3_large, mobilenet_v3_small, \
     efficientnet, resnext, inception_v4, inception_resnet_v1, inception_resnet_v2, \
-    se_resnet, squeezenet, densenet, shufflenet_v2, resnet
+    se_resnet, squeezenet, densenet, shufflenet_v2, resnet, se_resnext
 
 
 def get_model():
@@ -78,6 +78,10 @@ def get_model():
         return resnet.resnet_101()
     elif model_index == 33:
         return resnet.resnet_152()
+    elif model_index == 34:
+        return se_resnext.SEResNeXt50()
+    elif model_index == 35:
+        return se_resnext.SEResNeXt101()
     else:
         raise ValueError("The model_index does not exist.")
 

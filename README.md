@@ -8,7 +8,7 @@ A tensorflow2 implementation of some basic CNNs.
 + [EfficientNet](https://github.com/calmisential/EfficientNet_TensorFlow2)
 + [ResNeXt](https://github.com/calmisential/ResNeXt_TensorFlow2)
 + [InceptionV4, InceptionResNetV1, InceptionResNetV2](https://github.com/calmisential/InceptionV4_TensorFlow2)
-+ SE_ResNet_50, SE_ResNet_101, SE_ResNet_152
++ SE_ResNet_50, SE_ResNet_101, SE_ResNet_152, SE_ResNeXt_50, SE_ResNeXt_101
 + SqueezeNet
 + [DenseNet](https://github.com/calmisential/DenseNet_TensorFlow2)
 + ShuffleNetV2
@@ -89,6 +89,15 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
      </tr>
      <tr align="center">
           <td>ResNeXt101</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td rowspan="2">SEResNeXt</td>
+          <td>SEResNeXt50</td>
+          <td>(224 * 224)</td>
+     </tr>
+     <tr align="center">
+          <td>SEResNeXt101</td>
           <td>(224 * 224)</td>
      </tr>
      <tr align="center">

@@ -37,7 +37,6 @@ class ResNeXt_BottleNeck(tf.keras.layers.Layer):
         x = tf.nn.relu(x)
         x = self.conv2(x)
         x = self.bn3(x, training=training)
-        x = tf.nn.relu(x)
 
         shortcut = self.shortcut_conv(inputs)
         shortcut = self.shortcut_bn(shortcut, training=training)
