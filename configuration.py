@@ -1,3 +1,6 @@
+
+DEVICE = "gpu"   # cpu or gpu
+
 # some training parameters
 EPOCHS = 50
 BATCH_SIZE = 8
@@ -33,6 +36,7 @@ TEST_SET_RATIO = 0.2
 # 25 ~ 28 : ShuffleNetV2 (0.5x, 1.0x, 1.5x, 2.0x)
 # 29: ResNet_18, 30: ResNet_34, 31: ResNet_50, 32: ResNet_101, 33: ResNet_152
 # 34: SEResNeXt_50, 35: SEResNeXt_101
+# 36: RegNet
 
 # EfficientNets:
 # b0 = (1.0, 1.0, 224, 0.2)
@@ -43,5 +47,5 @@ TEST_SET_RATIO = 0.2
 # b5 = (1.6, 2.2, 456, 0.4)
 # b6 = (1.8, 2.6, 528, 0.5)
 # b7 = (2.0, 3.1, 600, 0.5)
-model_index = 35
+model_index = 36
 

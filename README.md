@@ -13,6 +13,7 @@ A tensorflow2 implementation of some basic CNNs.
 + [DenseNet](https://github.com/calmisential/DenseNet_TensorFlow2)
 + ShuffleNetV2
 + [ResNet](https://github.com/calmisential/TensorFlow2.0_ResNet)
++ RegNet
 
 ## Other networks
 For AlexNet and VGG, see : https://github.com/calmisential/TensorFlow2.0_Image_Classification<br/>
@@ -22,7 +23,7 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
 ## Train
 1. Requirements:
 + Python >= 3.6
-+ Tensorflow >= 2.3.0rc1
++ Tensorflow >= 2.4.0
 2. To train the network on your own dataset, you can put the dataset under the folder **original dataset**, and the directory should look like this:
 ```
 |——original dataset
@@ -49,7 +50,7 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
         |——class_name_2
         ......
         |——class_name_n
-```
+ ```
 4. Run **to_tfrecord.py** to generate tfrecord files.
 5. Change the corresponding parameters in **config.py**.
 6. Run **train.py** to start training.<br/>
@@ -194,3 +195,4 @@ Run **evaluate.py** to evaluate the model's performance on the test dataset.
 ](https://arxiv.org/abs/1807.11164)
 15. https://zhuanlan.zhihu.com/p/48261931
 16. ResNet: [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
+17. RegNet: [Designing Network Design Spaces](https://arxiv.org/abs/2003.13678)

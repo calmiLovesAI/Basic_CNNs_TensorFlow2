@@ -1,6 +1,32 @@
 import tensorflow as tf
+
+
 from tensorflow.keras import initializers, regularizers, constraints
 from tensorflow.keras import activations
+from configuration import DEVICE
+
+
+def get_group_conv(in_channels,
+                   out_channels,
+                   kernel_size,
+                   strides=(1, 1),
+                   padding='valid',
+                   groups=1):
+    if DEVICE == "cpu":
+        return GroupConv2D(input_channels=in_channels,
+                           output_channels=out_channels,
+                           kernel_size=kernel_size,
+                           strides=strides,
+                           padding=padding,
+                           groups=groups)
+    elif DEVICE == "gpu":
+        return tf.keras.layers.Conv2D(filters=out_channels,
+                                      kernel_size=kernel_size,
+                                      strides=strides,
+                                      padding=padding,
+                                      groups=groups)
+    else:
+        raise ValueError("Attribute 'DEVICE' must be 'cpu' or 'gpu'.")
 
 
 class GroupConv2D(tf.keras.layers.Layer):
