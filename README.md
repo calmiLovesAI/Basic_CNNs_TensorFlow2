@@ -24,6 +24,7 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
 1. Requirements:
 + Python >= 3.6
 + Tensorflow >= 2.4.0
++ tensorflow-addons>=0.12.0
 2. To train the network on your own dataset, you can put the dataset under the folder **original dataset**, and the directory should look like this:
 ```
 |——original dataset
