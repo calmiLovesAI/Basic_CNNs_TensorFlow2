@@ -75,8 +75,10 @@ class BottleNeck(tf.keras.layers.Layer):
 
 
 class SEResNeXt(tf.keras.Model):
-    def __init__(self, repeat_num_list, cardinality):
+    def __init__(self, repeat_num_list, cardinality, model_name):
         super(SEResNeXt, self).__init__()
+        self.model_name = model_name
+
         self.conv1 = tf.keras.layers.Conv2D(filters=64,
                                             kernel_size=(7, 7),
                                             strides=2,
@@ -134,10 +136,13 @@ class SEResNeXt(tf.keras.Model):
 
         return x
 
+    def __repr__(self):
+        return "SE_ResNeXt_{}".format(self.model_name)
+
 
 def SEResNeXt50():
-    return SEResNeXt(repeat_num_list=[3, 4, 6, 3], cardinality=32)
+    return SEResNeXt(repeat_num_list=[3, 4, 6, 3], cardinality=32, model_name="50")
 
 
 def SEResNeXt101():
-    return SEResNeXt(repeat_num_list=[3, 4, 23, 3], cardinality=32)
+    return SEResNeXt(repeat_num_list=[3, 4, 23, 3], cardinality=32, model_name="101")

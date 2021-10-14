@@ -50,3 +50,6 @@ class RegNet(AnyNet):
     def __init__(self):
         params = RegNet.get_params()
         super(RegNet, self).__init__(params)
+
+    def __repr__(self):
+        return "RegNet"

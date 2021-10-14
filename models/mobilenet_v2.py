@@ -129,3 +129,6 @@ class MobileNetV2(tf.keras.Model):
 
         return x
 
+    def __repr__(self):
+        return "MobileNetV2"
+

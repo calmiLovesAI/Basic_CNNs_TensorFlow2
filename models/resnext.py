@@ -4,10 +4,12 @@ from configuration import NUM_CLASSES
 
 
 class ResNeXt(tf.keras.Model):
-    def __init__(self, repeat_num_list, cardinality):
+    def __init__(self, repeat_num_list, cardinality, model_name):
         if len(repeat_num_list) != 4:
             raise ValueError("The length of repeat_num_list must be four.")
         super(ResNeXt, self).__init__()
+        self.model_name = model_name
+
         self.conv1 = tf.keras.layers.Conv2D(filters=64,
                                             kernel_size=(7, 7),
                                             strides=2,
@@ -52,12 +54,17 @@ class ResNeXt(tf.keras.Model):
 
         return x
 
+    def __repr__(self):
+        return "ResNeXt-{}".format(self.model_name)
+
 
 def ResNeXt50():
     return ResNeXt(repeat_num_list=[3, 4, 6, 3],
-                   cardinality=32)
+                   cardinality=32,
+                   model_name="50")
 
 
 def ResNeXt101():
     return ResNeXt(repeat_num_list=[3, 4, 23, 3],
-                   cardinality=32)
+                   cardinality=32,
+                   model_name="101")

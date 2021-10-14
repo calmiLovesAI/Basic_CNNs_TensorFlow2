@@ -64,8 +64,9 @@ class BottleNeck(tf.keras.layers.Layer):
 
 
 class SEResNet(tf.keras.Model):
-    def __init__(self, block_num):
+    def __init__(self, block_num, model_name):
         super(SEResNet, self).__init__()
+        self.model_name = model_name
 
         self.pre1 = tf.keras.layers.Conv2D(filters=64,
                                            kernel_size=(7, 7),
@@ -113,14 +114,17 @@ class SEResNet(tf.keras.Model):
         out = self.fc(avgpool)
         return out
 
+    def __repr__(self):
+        return "SE_ResNet_{}".format(self.model_name)
+
 
 def se_resnet_50():
-    return SEResNet(block_num=[3, 4, 6, 3])
+    return SEResNet(block_num=[3, 4, 6, 3], model_name="50")
 
 
 def se_resnet_101():
-    return SEResNet(block_num=[3, 4, 23, 3])
+    return SEResNet(block_num=[3, 4, 23, 3], model_name="101")
 
 
 def se_resnet_152():
-    return SEResNet(block_num=[3, 8, 36, 3])
+    return SEResNet(block_num=[3, 8, 36, 3], model_name="152")

@@ -74,3 +74,6 @@ class MobileNetV3Large(tf.keras.Model):
         x = self.conv4(x)
 
         return x
+
+    def __repr__(self):
+        return "MobileNetV3Large"

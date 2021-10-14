@@ -111,8 +111,9 @@ def build_mbconv_block(in_channels, out_channels, layers, stride, expansion_fact
 
 
 class EfficientNet(tf.keras.Model):
-    def __init__(self, width_coefficient, depth_coefficient, dropout_rate, drop_connect_rate=0.2):
+    def __init__(self, width_coefficient, depth_coefficient, dropout_rate, drop_connect_rate=0.2, name="B0"):
         super(EfficientNet, self).__init__()
+        self.model_name = name
 
         self.conv1 = tf.keras.layers.Conv2D(filters=round_filters(32, width_coefficient),
                                             kernel_size=(3, 3),
@@ -189,43 +190,46 @@ class EfficientNet(tf.keras.Model):
 
         return x
 
+    def __repr__(self):
+        return "EfficientNet-{}".format(self.model_name)
 
-def get_efficient_net(width_coefficient, depth_coefficient, resolution, dropout_rate):
+
+def get_efficient_net(width_coefficient, depth_coefficient, resolution, dropout_rate, name):
     net = EfficientNet(width_coefficient=width_coefficient,
                        depth_coefficient=depth_coefficient,
-                       dropout_rate=dropout_rate)
+                       dropout_rate=dropout_rate,
+                       name=name)
 
     return net
 
 
 def efficient_net_b0():
-    return get_efficient_net(1.0, 1.0, 224, 0.2)
+    return get_efficient_net(1.0, 1.0, 224, 0.2, "B0")
 
 
 def efficient_net_b1():
-    return get_efficient_net(1.0, 1.1, 240, 0.2)
+    return get_efficient_net(1.0, 1.1, 240, 0.2, "B1")
 
 
 def efficient_net_b2():
-    return get_efficient_net(1.1, 1.2, 260, 0.3)
+    return get_efficient_net(1.1, 1.2, 260, 0.3, "B2")
 
 
 def efficient_net_b3():
-    return get_efficient_net(1.2, 1.4, 300, 0.3)
+    return get_efficient_net(1.2, 1.4, 300, 0.3, "B3")
 
 
 def efficient_net_b4():
-    return get_efficient_net(1.4, 1.8, 380, 0.4)
+    return get_efficient_net(1.4, 1.8, 380, 0.4, "B4")
 
 
 def efficient_net_b5():
-    return get_efficient_net(1.6, 2.2, 456, 0.4)
+    return get_efficient_net(1.6, 2.2, 456, 0.4, "B5")
 
 
 def efficient_net_b6():
-    return get_efficient_net(1.8, 2.6, 528, 0.5)
+    return get_efficient_net(1.8, 2.6, 528, 0.5, "B6")
 
 
 def efficient_net_b7():
-    return get_efficient_net(2.0, 3.1, 600, 0.5)
-
+    return get_efficient_net(2.0, 3.1, 600, 0.5, "B7")

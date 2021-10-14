@@ -226,3 +226,6 @@ class InceptionResNetV2(tf.keras.Model):
         x = self.fc(x)
 
         return x
+
+    def __repr__(self):
+        return "InceptionResNetV2"

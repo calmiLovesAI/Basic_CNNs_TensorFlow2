@@ -54,10 +54,19 @@ For ResNet, see : https://github.com/calmisential/TensorFlow2.0_ResNet
  ```
 4. Run **to_tfrecord.py** to generate tfrecord files.
 5. Change the corresponding parameters in **config.py**.
-6. Run **train.py** to start training.<br/>
-If you want to train the *EfficientNet*, you should change the IMAGE_HEIGHT and IMAGE_WIDTH to *resolution* in the params, and then run **train.py** to start training.
+6. Run **show_model_list.py** to get the index of model.
+7. Run **python train.py --idx [index]** to start training.<br/>
+If you want to train the *EfficientNet*, you should change the IMAGE_HEIGHT and IMAGE_WIDTH before training.
+- b0 = (224, 224)
+- b1 = (240, 240)
+- b2 = (260, 260)
+- b3 = (300, 300)
+- b4 = (380, 380)
+- b5 = (456, 456)
+- b6 = (528, 528)
+- b7 = (600, 600)
 ## Evaluate
-Run **evaluate.py** to evaluate the model's performance on the test dataset.
+Run **python evaluate.py --idx [index]** to evaluate the model's performance on the test dataset.
 
 ## Different input image sizes for different neural networks
 <table>

@@ -67,3 +67,5 @@ class MobileNetV3Small(tf.keras.Model):
 
         return x
 
+    def __repr__(self):
+        return "MobileNetV3Small"

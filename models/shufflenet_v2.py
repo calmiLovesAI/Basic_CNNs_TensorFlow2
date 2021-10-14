@@ -91,8 +91,10 @@ class ShuffleBlockS2(tf.keras.layers.Layer):
 
 
 class ShuffleNetV2(tf.keras.Model):
-    def __init__(self, channel_scale):
+    def __init__(self, channel_scale, model_name):
         super(ShuffleNetV2, self).__init__()
+        self.model_name = model_name
+
         self.conv1 = tf.keras.layers.Conv2D(filters=24, kernel_size=(3, 3), strides=2, padding="same")
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.maxpool = tf.keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="same")
@@ -126,18 +128,21 @@ class ShuffleNetV2(tf.keras.Model):
         x = self.fc(x)
         return x
 
+    def __repr__(self):
+        return "ShuffleNetV2_{}".format(self.model_name)
+
 
 def shufflenet_0_5x():
-    return ShuffleNetV2(channel_scale=[48, 96, 192, 1024])
+    return ShuffleNetV2(channel_scale=[48, 96, 192, 1024], model_name="0.5x")
 
 
 def shufflenet_1_0x():
-    return ShuffleNetV2(channel_scale=[116, 232, 464, 1024])
+    return ShuffleNetV2(channel_scale=[116, 232, 464, 1024], model_name="1.0x")
 
 
 def shufflenet_1_5x():
-    return ShuffleNetV2(channel_scale=[176, 352, 704, 1024])
+    return ShuffleNetV2(channel_scale=[176, 352, 704, 1024], model_name="1.5x")
 
 
 def shufflenet_2_0x():
-    return ShuffleNetV2(channel_scale=[244, 488, 976, 2048])
+    return ShuffleNetV2(channel_scale=[244, 488, 976, 2048], model_name="2.0x")
