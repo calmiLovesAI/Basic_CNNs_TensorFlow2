@@ -6,3 +6,4 @@ __pycache__
 !/original_dataset/README.md
 /saved_model/*
 !/saved_model/README.md
+models.txt
